@@ -25,60 +25,53 @@
           <div id="cart-item-row" class="row"></div>
         </div>
         <div class="col col-12 col-lg-5">
-          <div class="card shadow">
-            <div class="card-body">
-              <h3 class="mb-4">Subtotal</h3>
+          <div class="card shadow card-body">
+              <h3 class="mb-3">Subtotal</h3>
               <p class="subtotal"></p>
               <h3 class="mb-4">Payment</h3>
-
-              <div class="row">
-                <div class="col-12 mb-3">
-                  <label for="card-name-input" class="form-label"
-                    >Cardholder Name</label
-                  >
-                  <input
-                    id="card-name-input"
-                    class="form-control form-control-lg"
-                    type="text"
-                    placeholder="e.g. John Smith"
-                  />
-                </div>
-                <div class="col-12 mb-3">
-                  <label for="card-number-input" class="form-label"
-                    >Card Number</label
-                  >
-                  <input
-                    id="card-number-input"
-                    class="form-control form-control-lg"
-                    type="text"
-                    placeholder="e.g. 0123456789012345"
-                  />
-                </div>
-                <div class="col-6">
-                  <label for="card-expiration-input" class="form-label"
-                    >Expiration Date</label
-                  >
-                  <input
-                    id="card-expiration-input"
-                    class="form-control form-control-lg mb-2"
-                    type="text"
-                    placeholder="MM/YY"
-                  />
-                </div>
-                <div class="col-6">
-                  <label for="card-cvv-input" class="form-label">Cvv</label>
-                  <input
-                    id="card-cvv-input"
-                    class="form-control form-control-lg mb-2"
-                    type="text"
-                    placeholder="e.g. 546"
-                  />
-                </div>
-                <div class="col mt-4">
-                  <button class="btn btn-primary">Checkout</button>
-                </div>
-              </div>
-            </div>
+                <form>
+                  <div class="mb-3">
+                    <label for="card-name-input" class="form-label">Cardholder Name</label>
+                    <input
+                      id="card-name-input"
+                      class="form-control form-control-lg"
+                      type="text"
+                      placeholder="e.g. John Smith"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="card-number-input" class="form-label">Card Number</label>
+                    <input
+                      id="card-number-input"
+                      class="form-control form-control-lg"
+                      type="text"
+                      placeholder="e.g. 0123456789012345"
+                    />
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-6">
+                      <label for="card-expiration-input" class="form-label">Expiration Date</label>
+                      <input
+                        id="card-expiration-input"
+                        class="form-control form-control-lg mb-2"
+                        type="text"
+                        placeholder="MM/YY"
+                      />
+                    </div>
+                    <div class="col-6">
+                      <label for="card-cvv-input" class="form-label">Cvv</label>
+                      <input
+                        id="card-cvv-input"
+                        class="form-control form-control-lg mb-2"
+                        type="text"
+                        placeholder="e.g. 546"
+                      />
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <input class="btn btn-primary" type="submit" value="Checkout">
+                  </div>
+                </form>
           </div>
         </div>
       </div>

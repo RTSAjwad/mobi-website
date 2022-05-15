@@ -2,7 +2,7 @@ class MobiNavbar extends HTMLElement {
   constructor() {
     super();
     this.innerHTML = `
-        <nav class="navbar navbar-expand-sm navbar-light bg-light sticky-top shadow">
+        <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top shadow">
           <div class="container">
                 <a class="navbar-brand" href="index.html">
                 <h1 class="navbar-brand">
@@ -36,9 +36,10 @@ class MobiNavbar extends HTMLElement {
                     <a class="nav-link" href="about.html">About</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="cart.html"
-                        ><i class="bi bi-bag fs-4"></i
-                    ></a>
+                    <a class="nav-link" href="contact.html">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="cart.html">Cart</a>
                     </li>
                 </ul>
                 </div>
@@ -55,8 +56,10 @@ class MobiNavbar extends HTMLElement {
       navLinks[2].classList.add("active");
     } else if (title == "title-about") {
       navLinks[3].classList.add("active");
-    } else if (title == "title-cart") {
+    } else if (title == "title-contact") {
       navLinks[4].classList.add("active");
+    } else if (title == "title-cart") {
+      navLinks[5].classList.add("active");
     }
   }
 }
