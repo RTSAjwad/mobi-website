@@ -21,7 +21,7 @@ addProductCard(
   "samsung-galaxy-s22.jpg"
 );
 addProductCard(
-  "apple-iPhone-13-pro-max",
+  "apple-iphone-13-pro-max",
   "Apple",
   "iPhone 13 Pro Max",
   "1147.99",
