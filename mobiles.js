@@ -1,86 +1,36 @@
 const row = document.getElementById("mobile-row");
 
-function addPhoneCard(
-  brandName,
-  phoneName,
-  monthlyPrice,
-  upfrontPrice,
-  imageUrl
-) {
-  var card = document.createElement("mobi-phone-card");
-  card.setCardAttributes(
-    brandName,
-    phoneName,
-    monthlyPrice,
-    upfrontPrice,
-    imageUrl
-  );
+function addProductCard(tag, brandName, productName, price, imageUrl) {
+  var card = document.createElement("mobi-product-card");
+  card.setCardAttributes(tag, brandName, productName, price, imageUrl);
   row.appendChild(card);
 }
 
-addPhoneCard(
+addProductCard(
+  "samsung-galaxy-s22-ultra",
   "Samsung",
   "Galaxy S22 Ultra",
-  "63.00",
-  "29.00",
-  "samsung-galaxy-s22-ultra.jpg"
+  "1135.00",
+  "samsung-galaxy-s22-ultra.jpg",
 );
-addPhoneCard(
+addProductCard(
+  "samsung-galaxy-s22",
   "Samsung",
   "Galaxy S22",
-  "47.00",
-  "0.00",
+  "769.00",
   "samsung-galaxy-s22.jpg"
 );
-addPhoneCard(
+addProductCard(
+  "apple-iPhone-13-pro-max",
   "Apple",
   "iPhone 13 Pro Max",
-  "58.99",
-  "49.00",
+  "1147.99",
   "apple-iphone-13-pro-max.jpg"
 );
-addPhoneCard("Google", "Pixel 6", "29.99", "0.00", "google-pixel-6.jpg");
-addPhoneCard(
-  "Samsung",
-  "Galaxy S22 Ultra",
-  "63.00",
-  "29.00",
-  "samsung-galaxy-s22-ultra.jpg"
+addProductCard(
+  "google-pixel-6",
+  "Google",
+  "Pixel 6",
+  "597.00",
+  "google-pixel-6.jpg"
 );
-addPhoneCard(
-  "Samsung",
-  "Galaxy S22",
-  "47.00",
-  "0.00",
-  "samsung-galaxy-s22.jpg"
-);
-addPhoneCard(
-  "Apple",
-  "iPhone 13 Pro Max",
-  "58.99",
-  "49.00",
-  "apple-iphone-13-pro-max.jpg"
-);
-addPhoneCard("Google", "Pixel 6", "29.99", "0.00", "google-pixel-6.jpg");
-addPhoneCard(
-  "Samsung",
-  "Galaxy S22 Ultra",
-  "63.00",
-  "29.00",
-  "samsung-galaxy-s22-ultra.jpg"
-);
-addPhoneCard(
-  "Samsung",
-  "Galaxy S22",
-  "47.00",
-  "0.00",
-  "samsung-galaxy-s22.jpg"
-);
-addPhoneCard(
-  "Apple",
-  "iPhone 13 Pro Max",
-  "58.99",
-  "49.00",
-  "apple-iphone-13-pro-max.jpg"
-);
-addPhoneCard("Google", "Pixel 6", "29.99", "0.00", "google-pixel-6.jpg");
