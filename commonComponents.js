@@ -87,12 +87,11 @@ class MobiProductCard extends HTMLElement {
   constructor() {
     super();
   }
-  setCardAttributes(tag, brandName, productName, price, imageName, amount) {
+  setCardAttributes(tag, brandName, productName, price, amount) {
     this.tag = tag;
     this.brandName = brandName;
     this.productName = productName;
     this.price = price;
-    this.imageName = imageName;
     this.amount = amount;
   }
   connectedCallback() {
