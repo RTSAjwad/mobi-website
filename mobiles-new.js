@@ -25,7 +25,7 @@ addProductCard(
   "Apple",
   "iPhone 13 Pro Max",
   "1147.99",
-  "apple-iPhone-13-pro-max.jpg"
+  "apple-iphone-13-pro-max.jpg"
 );
 addProductCard(
   "google-pixel-6",

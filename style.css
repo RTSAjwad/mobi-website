@@ -44,7 +44,9 @@ body {
 .browsing-row .card-image {
     max-height: 200px;
 }
-
+.sent-icon {
+    font-size: 200px;
+}
 @media (max-width: 991px) {
 }
 
