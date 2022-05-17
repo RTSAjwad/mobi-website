@@ -68,3 +68,14 @@ function isItemInCartByTag(tag) {
 
     return inCart;
 }
+function getCartSubtotal() {
+    var cart = JSON.parse(sessionStorage.getItem("cart"));
+    var subtotal = 0;
+    for (let i = 0; i < cart.length; i++){
+        var price = Number(cart[i].price);
+        var amount = Number(cart[i].amount);
+        var itemTotal = price * amount;
+        subtotal = subtotal + itemTotal;
+    }
+    return subtotal.toFixed(2);
+}

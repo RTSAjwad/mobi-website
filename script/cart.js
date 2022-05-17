@@ -89,27 +89,21 @@ customElements.define("mobi-cart-card", MobiCartCard);
 //We get the row by id from the page that we want to add our cart cards to
 const row = document.getElementById("cart-item-row");
 
-//We get the cart from session storage
-//We parse the cart so we can use it as an array rather than plain text
+//We get the cart from session storage and parse it so we can use it as an array rather than plain text
 cart = JSON.parse(sessionStorage.getItem("cart"));
-//We loop through the cart array and perform a set of instructions for each item object
+
+//This for loop will loop through the cart array
+//For every item in the cart array, we create a mobi-cart-card, add the items info to the card, the finally append the newly made card to the row to be displayed on page
 for (let i = 0; i < cart.length; i++) {
-  //We create a mobi-cart-card, add the item information from the current item in the cart array
-  card = document.createElement("mobi-cart-card"); //We create a mobi-cart-card,
-  card.addCardInfo(cart[i]); //We add the current items information to the card we have just created
-  row.appendChild(card); //We have now created a card that represents the item and can append it to the row we got earlier to be displayed on page
+  card = document.createElement("mobi-cart-card");
+  card.addCardInfo(cart[i]);
+  row.appendChild(card);
 }
 
 function updateCartPageSubtotal() {
   var cart = JSON.parse(sessionStorage.getItem("cart"));
     var subtotalElement = document.getElementsByClassName("subtotal")[0]
-    var subtotal = 0;
-    for (let i = 0; i < cart.length; i++){
-      var price = Number(cart[i].price);
-      var amount = Number(cart[i].amount);
-      var itemTotal = price * amount;
-      subtotal = subtotal + itemTotal;
-    }
-    subtotalElement.innerHTML = `${subtotal.toFixed(2)}`;
+    subtotalElement.innerHTML = `${getCartSubtotal()}`;
 }
+
 updateCartPageSubtotal();
