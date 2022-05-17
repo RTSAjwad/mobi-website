@@ -4,8 +4,9 @@ class MobiCartCard extends HTMLElement {
     super();
   }
 
-  // This function takes an object as its paramater
+  // This function takes an object as its paramater, the object will come from the array of objects in our cart which contains the information for a single item.
   addCardInfo(itemInfo) {
+    // We take the information of that single item and also store it inside our cart card that we will display
     this.tag = itemInfo.tag;
     this.brandName = itemInfo.brandName;
     this.productName = itemInfo.productName;
@@ -14,7 +15,9 @@ class MobiCartCard extends HTMLElement {
     this.amount = itemInfo.amount;
     this.itemSubtotal = (Number(this.price) * Number(this.amount)).toFixed(2);
   }
+  //This function is excecuted when this element is inserted into the DOM.
   connectedCallback() {
+    //We set the html of the element and use the item info we got from the cart to be displayed on the card. 
     this.innerHTML = `
     <div class="col card shadow mb-3">
       <div class="card-body">
@@ -22,7 +25,7 @@ class MobiCartCard extends HTMLElement {
           <div class="col-3 col-md-2">
             <img
               class="img-fluid"
-              src="images/${this.tag}.jpg"
+              src="images/${this.tag}.jpg" 
               alt=""
             />
           </div>
@@ -58,60 +61,46 @@ class MobiCartCard extends HTMLElement {
     `;
     var removeButton = this.getElementsByClassName("btn-danger")[0];
     removeButton.addEventListener("click", (event) => {
-      var cart = JSON.parse(sessionStorage.getItem("cart"));
-      for (let i = 0; i < cart.length; i++) {
-        if (cart[i].tag == this.tag) {
-          cart.splice(i, 1);
-          sessionStorage.setItem("cart", JSON.stringify(cart));
-        }
-      }
-      updateSubtotal();
+      removeCartItemByTag(this.tag);
+      updateCartPageSubtotal();
       this.remove();
     });
 
-    var inputElement = this.getElementsByTagName("input")[0];
-    var priceElement = this.getElementsByClassName("price")[0];
-    inputElement.addEventListener("input", (event) => {
-      var amount = inputElement.value;
-      var cart = JSON.parse(sessionStorage.getItem("cart"));
+    var amountInput = this.getElementsByTagName("input")[0];
+    var priceText = this.getElementsByClassName("price")[0];
+    amountInput.addEventListener("input", (event) => {
+      var amount = amountInput.value;
       if (amount == 0) {
-        for (let i = 0; i < cart.length; i++) {
-          if (cart[i].tag == this.tag) {
-            cart.splice(i, 1);
-            sessionStorage.setItem("cart", JSON.stringify(cart));
-          }
-        }
+        removeCartItemByTag(this.tag);
         this.remove();
       }
       else {
-        for (let i = 0; i < cart.length; i++) {
-          if (cart[i].tag == this.tag) {
-            cart[i].amount = amount
-            sessionStorage.setItem("cart", JSON.stringify(cart));
-          }
-        }
+        updateCartItemAmountByTag(this.tag, amount);
         var totalItemPrice = this.price * amount
-        priceElement.innerHTML = `£${(totalItemPrice).toFixed(2)}`;
+        priceText.innerHTML = `£${(totalItemPrice).toFixed(2)}`;
       }
-      updateSubtotal();
+      updateCartPageSubtotal();
     })
   }
 }
 customElements.define("mobi-cart-card", MobiCartCard);
 
-//get the row from the document
-const row = document.getElementById("cart-item-row");
-cart = JSON.parse(sessionStorage.getItem("cart"));
-//create a card
 
+//We get the row by id from the page that we want to add our cart cards to
+const row = document.getElementById("cart-item-row");
+
+//We get the cart from session storage
+//We parse the cart so we can use it as an array rather than plain text
+cart = JSON.parse(sessionStorage.getItem("cart"));
+//We loop through the cart array and perform a set of instructions for each item object
 for (let i = 0; i < cart.length; i++) {
-  card = document.createElement("mobi-cart-card");
-  cardInfo = cart[i];
-  card.addCardInfo(cardInfo);
-  row.appendChild(card);
+  //We create a mobi-cart-card, add the item information from the current item in the cart array
+  card = document.createElement("mobi-cart-card"); //We create a mobi-cart-card,
+  card.addCardInfo(cart[i]); //We add the current items information to the card we have just created
+  row.appendChild(card); //We have now created a card that represents the item and can append it to the row we got earlier to be displayed on page
 }
 
-function updateSubtotal() {
+function updateCartPageSubtotal() {
   var cart = JSON.parse(sessionStorage.getItem("cart"));
     var subtotalElement = document.getElementsByClassName("subtotal")[0]
     var subtotal = 0;
@@ -123,4 +112,4 @@ function updateSubtotal() {
     }
     subtotalElement.innerHTML = `${subtotal.toFixed(2)}`;
 }
-updateSubtotal();
+updateCartPageSubtotal();

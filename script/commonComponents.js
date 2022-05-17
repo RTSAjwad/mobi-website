@@ -82,7 +82,6 @@ class MobiFooter extends HTMLElement {
     </footer>`;
   }
 }
-
 class MobiProductCard extends HTMLElement {
   constructor() {
     super();
@@ -119,27 +118,17 @@ class MobiProductCard extends HTMLElement {
             </div>
           </div>
     `;
-    // <button id="add-to-cart"class="btn btn-primary my-2" type="button">Add To Cart</button>
-    var cart = JSON.parse(sessionStorage.getItem("cart"));
 
-    var inCart = false;
-    if (cart != null) {
-      for (let i = 0; i < cart.length; i++) {
-        if (cart[i].tag == this.tag) {
-          inCart = true;
-        }
-      }
-    }
-
+    var inCart = isItemInCartByTag(this.tag);
     var insertTarget = this.getElementsByClassName("card-body")[1];
     if (inCart == false) {
-      insertTarget.appendChild(this.createAddToCard());
+      insertTarget.appendChild(this.createAddToCardElement());
     } else {
-      insertTarget.appendChild(this.createRemoveCardElement());
+      insertTarget.appendChild(this.createInCardElement());
     }
   }
 
-  createRemoveCardElement() {
+  createInCardElement() {
     var inCartElement = document.createElement("div");
     inCartElement.setAttribute("class", "row g-2 mt-2");
     inCartElement.innerHTML = `
@@ -155,59 +144,34 @@ class MobiProductCard extends HTMLElement {
           <button class="btn btn-danger">Remove</button>
         </div>
       `;
+    
     var removeButton = inCartElement.getElementsByTagName("button")[0];
     removeButton.addEventListener("click", (event) => {
-      var cart = JSON.parse(sessionStorage.getItem("cart"));
-      console.log(cart);
-      for (let i = 0; i < cart.length; i++) {
-        if (cart[i].tag == this.tag) {
-          cart.splice(i, 1);
-          sessionStorage.setItem("cart", JSON.stringify(cart));
-        }
-      }
+      removeCartItemByTag(this.tag)
 
-      var parent = inCartElement.parentElement;
-      var addToCart = this.createAddToCard();
-      parent.appendChild(addToCart);
+      var addToCart = this.createAddToCardElement();
+      inCartElement.parentElement.appendChild(addToCart);
       inCartElement.remove();
     });
 
     var inputElement = inCartElement.getElementsByTagName("input")[0];
-    var cart = JSON.parse(sessionStorage.getItem("cart"));
-    for (let i = 0; i < cart.length; i++) {
-      if (cart[i].tag == this.tag) {
-        inputElement.value = cart[i].amount
-      }
-    }
-
+    inputElement.value = getCartItemAmountByTag(this.tag);
     inputElement.addEventListener("input", (event) => {
       var amount = inputElement.value;
-      var cart = JSON.parse(sessionStorage.getItem("cart"));
       if (amount == 0) {
-        for (let i = 0; i < cart.length; i++) {
-          if (cart[i].tag == this.tag) {
-            cart.splice(i, 1);
-            sessionStorage.setItem("cart", JSON.stringify(cart));
-          }
-        }
-        var parent = inCartElement.parentElement;
-        var addToCart = this.createAddToCard();
-        parent.appendChild(addToCart);
+        removeCartItemByTag(this.tag);
+        var addToCart = this.createAddToCardElement();
+        inCartElement.parentElement.appendChild(addToCart);
         inCartElement.remove();
       }
       else {
-        for (let i = 0; i < cart.length; i++) {
-          if (cart[i].tag == this.tag) {
-            cart[i].amount = amount
-            sessionStorage.setItem("cart", JSON.stringify(cart));
-          }
-        }
+        updateCartItemAmountByTag(this.tag, amount);
       }
     })
-
     return inCartElement;
   }
-  createAddToCard() {
+
+  createAddToCardElement() {
     var btn = document.createElement("button");
     btn.setAttribute("id", "add-to-cart");
     btn.setAttribute("class", "btn btn-primary my-2");
@@ -217,29 +181,11 @@ class MobiProductCard extends HTMLElement {
     btn.addEventListener(
       "click",
       (event) => {
-        var cart = JSON.parse(sessionStorage.getItem("cart"));
-        var itemJson = {
-          tag: this.tag,
-          brandName: this.brandName,
-          productName: this.productName,
-          imageName: this.imageName,
-          price: this.price,
-          amount: 1
-        };
-
-        if (cart == null) {
-          //create a cart storage with our item in its first index
-          var cart = [itemJson];
-          sessionStorage.setItem("cart", JSON.stringify(cart));
-        } else {
-          //append out item to the cart in storage
-          cart.push(itemJson);
-          sessionStorage.setItem("cart", JSON.stringify(cart));
-        }
+        addToCart(this.tag, this.brandName, this.productName, this.price);
         var button = this.getElementsByTagName("button")[0];
 
         var insertTarget = button.parentElement;
-        var inCartText = this.createRemoveCardElement();
+        var inCartText = this.createInCardElement();
         insertTarget.appendChild(inCartText);
         button.remove();
       },
