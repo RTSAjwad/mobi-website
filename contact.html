@@ -22,11 +22,11 @@
     <div class="container my-4">
       <h2 class="d-flex justify-content-center my-5">Contact Us</h2>
       <div class="container card">
-         <form>
+         <form name="contactForm" onsubmit="return validateForm()">
           <div class="mb-3">
             <label for="contactName" class="form-label">Name</label>
             <input
-              id="messageName"
+              name="contactName"
               class="form-control form-control-lg"
               type="text"
               placeholder="John Smith"
@@ -35,7 +35,7 @@
           <div class="mb-3">
             <label for="contactEmail" class="form-label">E-mail Address</label>
             <input
-              id="messageEmail"
+              name="contactEmail"
               class="form-control form-control-lg"
               type="email"
               placeholder="jsmith@mobi.com"
@@ -44,7 +44,7 @@
           <div class="mb-3">
             <label for="contactMessage" class="form-label">Message</label>
             <textarea
-              id="contactMessage"
+              name="contactMessage"
               class="form-control form-control-lg"
               type="text"
             ></textarea>
@@ -55,6 +55,7 @@
     </div>
     <mobi-footer></mobi-footer>
     <script src="script/commonComponents.js"></script>
+    <script src="script/contact.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
