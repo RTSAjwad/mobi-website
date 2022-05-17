@@ -1,7 +1,10 @@
+//This class acts as a template for cards on the cart page. Each card represents a single item in our cart.
 class MobiCartCard extends HTMLElement {
   constructor() {
     super();
   }
+
+  // This function takes an object as its paramater
   addCardInfo(itemInfo) {
     this.tag = itemInfo.tag;
     this.brandName = itemInfo.brandName;
