@@ -15,4 +15,7 @@ function validateForm() {
         alert("You need to write a message");
         return false;
     }
+    else {
+        alert("Your Message has been sent");
+    }
   } 
