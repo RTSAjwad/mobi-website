@@ -1,7 +1,12 @@
+function getCartAsArray() {
+    //We get the cart array from session storage. It is stored as plain text so we need to parse it so we can treat it like an array
+    cart = JSON.parse(sessionStorage.getItem("cart"));
+    return cart;
+}
 function removeCartItemByTag(tag) {
     //We get the cart array from session storage.
     //This returns plain text so we parse it so we can treat it as an array.
-    var cart = JSON.parse(sessionStorage.getItem("cart"));
+    var cart = getCartAsArray();
 
     //Loop through our cart array from beginning to end
     for (let i = 0; i < cart.length; i++) {
@@ -17,7 +22,7 @@ function addToCart(tag, brandName, productName, price){
 
     //We get the cart array from session storage.
     //This returns plain text so we parse it so we can treat it as an array.
-    var cart = JSON.parse(sessionStorage.getItem("cart"));
+    var cart = getCartAsArray();
 
     //This object stores an items data and will be added as an index in the cart array in session storage
     var itemJson = {
@@ -38,7 +43,7 @@ function addToCart(tag, brandName, productName, price){
     sessionStorage.setItem("cart", JSON.stringify(cart));
 }
 function updateCartItemAmountByTag(tag, amount) {
-    var cart = JSON.parse(sessionStorage.getItem("cart"));
+    var cart = getCartAsArray();
     for (let i = 0; i < cart.length; i++) {
         if (cart[i].tag == tag) {
           cart[i].amount = amount
@@ -47,7 +52,7 @@ function updateCartItemAmountByTag(tag, amount) {
     }
 }
 function getCartItemAmountByTag(tag) {
-    var cart = JSON.parse(sessionStorage.getItem("cart"));
+    var cart = getCartAsArray();
     for (let i = 0; i < cart.length; i++) {
       if (cart[i].tag == tag) {
         return cart[i].amount
@@ -55,7 +60,7 @@ function getCartItemAmountByTag(tag) {
     }
 }
 function isItemInCartByTag(tag) {
-    var cart = JSON.parse(sessionStorage.getItem("cart"));
+    var cart = getCartAsArray();
 
     var inCart = false;
     if (cart != null) {
@@ -69,7 +74,7 @@ function isItemInCartByTag(tag) {
     return inCart;
 }
 function getCartSubtotal() {
-    var cart = JSON.parse(sessionStorage.getItem("cart"));
+    var cart = getCartAsArray();
     var subtotal = 0;
     for (let i = 0; i < cart.length; i++){
         var price = Number(cart[i].price);
@@ -78,4 +83,7 @@ function getCartSubtotal() {
         subtotal = subtotal + itemTotal;
     }
     return subtotal.toFixed(2);
+}
+function emptyCart() {
+    sessionStorage.removeItem('cart');
 }

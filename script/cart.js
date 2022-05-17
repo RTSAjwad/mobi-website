@@ -90,7 +90,7 @@ customElements.define("mobi-cart-card", MobiCartCard);
 const row = document.getElementById("cart-item-row");
 
 //We get the cart from session storage and parse it so we can use it as an array rather than plain text
-cart = JSON.parse(sessionStorage.getItem("cart"));
+cart = getCartAsArray();
 
 //This for loop will loop through the cart array
 //For every item in the cart array, we create a mobi-cart-card, add the items info to the card, the finally append the newly made card to the row to be displayed on page
@@ -101,9 +101,15 @@ for (let i = 0; i < cart.length; i++) {
 }
 
 function updateCartPageSubtotal() {
-  var cart = JSON.parse(sessionStorage.getItem("cart"));
+  var cart = getCartAsArray();
     var subtotalElement = document.getElementsByClassName("subtotal")[0]
-    subtotalElement.innerHTML = `${getCartSubtotal()}`;
+    subtotalElement.innerHTML = `£${getCartSubtotal()}`;
 }
 
 updateCartPageSubtotal();
+
+function switchToSentPage() {
+  window.location.href="./sent.html";
+  emptyCart();
+  return false
+}
