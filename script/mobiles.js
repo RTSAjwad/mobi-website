@@ -12,11 +12,23 @@ addProductCard(
   "Galaxy S22 Ultra",
   "1135.00",
 );
+addPhoneCard(
+  "samsung-galaxy-s22-plus",
+  "Samsung",
+  "Galaxy S22 Plus",
+  "929.00",
+);
 addProductCard(
   "samsung-galaxy-s22",
   "Samsung",
   "Galaxy S22",
   "769.00",
+);
+addPhoneCard(
+  "samsung-galaxy-s21-fe",
+  "Samsung",
+  "Galaxy S21 FE",
+  "550",
 );
 addProductCard(
   "apple-iphone-13-pro-max",
