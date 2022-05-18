@@ -80,13 +80,10 @@ class MobiFooter extends HTMLElement {
 class MobiProductCard extends HTMLElement {
   constructor() {
     super();
-  }
-  setCardAttributes(tag, brandName, productName, price, amount) {
-    this.tag = tag;
-    this.brandName = brandName;
-    this.productName = productName;
-    this.price = price;
-    this.amount = amount;
+    this.tag = this.getAttribute("tag");
+    this.brandName = this.getAttribute("brandName");
+    this.productName = this.getAttribute("productName");
+    this.price = this.getAttribute("price");
   }
   connectedCallback() {
     this.innerHTML = `

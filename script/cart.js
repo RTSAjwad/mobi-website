@@ -100,14 +100,17 @@ for (let i = 0; i < cart.length; i++) {
   row.appendChild(card);
 }
 
+//This function updates the subtotal of all the items in the cart on screen
 function updateCartPageSubtotal() {
   var cart = getCartAsArray();
     var subtotalElement = document.getElementsByClassName("subtotal")[0]
     subtotalElement.innerHTML = `£${getCartSubtotal()}`;
 }
 
+//We update the subtotal when the page loads
 updateCartPageSubtotal();
 
+//This function is excecuted when the card form is submitted at checkout and sends us to the sent page
 function switchToSentPage() {
   window.location.href="./sent.html";
   emptyCart();
