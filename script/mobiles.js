@@ -12,7 +12,7 @@ addProductCard(
   "Galaxy S22 Ultra",
   "1135.00",
 );
-addPhoneCard(
+addProductCard(
   "samsung-galaxy-s22-plus",
   "Samsung",
   "Galaxy S22 Plus",
@@ -24,7 +24,7 @@ addProductCard(
   "Galaxy S22",
   "769.00",
 );
-addPhoneCard(
+addProductCard(
   "samsung-galaxy-s21-fe",
   "Samsung",
   "Galaxy S21 FE",
