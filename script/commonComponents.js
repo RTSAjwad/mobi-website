@@ -33,9 +33,6 @@ class MobiNavbar extends HTMLElement {
                     <a class="nav-link" href="accessories.html">Accessories</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item">
                     <a class="nav-link" href="contact.html">Contact Us</a>
                     </li>
                     <li class="nav-item">
@@ -54,12 +51,10 @@ class MobiNavbar extends HTMLElement {
       navLinks[1].classList.add("active");
     } else if (title == "title-accessories") {
       navLinks[2].classList.add("active");
-    } else if (title == "title-about") {
-      navLinks[3].classList.add("active");
     } else if (title == "title-contact") {
-      navLinks[4].classList.add("active");
+      navLinks[3].classList.add("active");
     } else if (title == "title-cart") {
-      navLinks[5].classList.add("active");
+      navLinks[4].classList.add("active");
     }
   }
 }
